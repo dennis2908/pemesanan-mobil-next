@@ -132,7 +132,7 @@ const Header: React.FC<HeaderProps> = (props) => {
             {
               content: (
                 <Link href="/">
-                  <a className="logo">Manajemen Mobil</a>
+                  <a className="logo">Peminjaman Mobil</a>
                 </Link>
               ),
             },
