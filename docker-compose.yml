@@ -1,0 +1,11 @@
+version: '3.9'
+
+services:
+  fealamsutera:
+    container_name: fealamsutera
+    image: fealamsutera/1.0
+    build: .
+    ports:
+      - "3003:3003"
+volumes:
+  pgdata: {}
