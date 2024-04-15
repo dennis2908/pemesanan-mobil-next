@@ -26,9 +26,9 @@
     "styled-components": "5.2.3"
   },
   "scripts": {
-    "dev": "next",
-    "build": "next build",
-    "start": "next start",
+    "dev": "set NODE_OPTIONS=--openssl-legacy-provider && next",
+    "build": "set NODE_OPTIONS=--openssl-legacy-provider && next build",
+    "start": "set NODE_OPTIONS=--openssl-legacy-provider && next start --port ${PORT-3000}",
     "lint": "eslint --fix --ext .js,.jsx .",
     "prepare": "husky install"
   },
