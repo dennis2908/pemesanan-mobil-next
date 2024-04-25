@@ -34,24 +34,44 @@ export default function Signin() {
     };
   };
 
+  function timeoutPromise(ms, promise) {
+    return new Promise((resolve, reject) => {
+      const timeoutId = setTimeout(() => {
+        reject(new Error('promise timeout'));
+      }, ms);
+      promise.then(
+        (res) => {
+          clearTimeout(timeoutId);
+          resolve(res);
+        },
+        (err) => {
+          clearTimeout(timeoutId);
+          reject(err);
+        },
+      );
+    });
+  }
+
   const SubmitFormRegister = async (e) => {
     e.preventDefault();
 
     setStyleAlrt(false);
 
-    let no_sim = await fetch('http://127.0.0.1:8441/api/user/cek_sim/' + FormData.no_sim, {
+    let no_sim = await fetch('https://127.0.0.1/api/user/cek_sim/' + FormData.no_sim, {
       method: 'GET',
       headers: {
-        'Access-Control-Allow-Headers': '*',
+        'Access-Control-Allow-Origin': '*',
       },
     })
-      .then((response) => response.json())
-      .then((response) => {
-        return response.result;
+      .then((res) => res.json())
+      .then((res) => {
+        return res.result;
       });
 
+    console.log(111, no_sim);
+
     if (no_sim === null)
-      fetch('http://127.0.0.1:8441/api/user/register', {
+      fetch('http://localhost:8441/api/user/register', {
         method: 'POST',
         headers: {
           Accept: 'application/json',
@@ -74,7 +94,7 @@ export default function Signin() {
     formData.no_sim = e.target.no_sim.value;
     formData.password = e.target.password.value;
 
-    await fetch('http://127.0.0.1:8441/api/user/login', {
+    await fetch('https://127.0.0.1/api/login', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
