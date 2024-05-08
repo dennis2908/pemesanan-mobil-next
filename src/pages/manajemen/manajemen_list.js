@@ -38,6 +38,8 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 
 import { useRouter } from 'next/router';
 
+import { RedisConfig } from '../../redis/redis';
+
 const columns = [
   { id: 'merk', label: 'Merk', minWidth: 200 },
   { id: 'model', label: 'Model', minWidth: 200 },
@@ -107,7 +109,9 @@ export default function Manajemen_list() {
   const router = useRouter();
 
   React.useEffect(async () => {
-    var mmanajemen = Object.assign({}, storeLogin.getState().authRoleAssign);
+    const redis = RedisConfig();
+    const res = await redis.get(storeLogin.getState().authLogin);
+    var mmanajemen = Object.assign({}, res.authRoleAssign.split(','));
     let cekmmanajemen = Object.values(mmanajemen).find((obj) => {
       return obj === 'mmanajemen';
     });

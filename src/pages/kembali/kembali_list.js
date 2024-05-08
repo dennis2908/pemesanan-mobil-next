@@ -25,6 +25,8 @@ import DialogContent from '@material-ui/core/DialogContent';
 
 import { red } from '@material-ui/core/colors';
 
+import { RedisConfig } from '../../redis/redis';
+
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 
 import Paper from '@material-ui/core/Paper';
@@ -173,7 +175,9 @@ export default function Kembali_list() {
   const router = useRouter();
 
   React.useEffect(async () => {
-    var mmanajemen = Object.assign({}, storeLogin.getState().authRoleAssign);
+    const redis = RedisConfig();
+    const res = await redis.get(storeLogin.getState().authLogin);
+    var mmanajemen = Object.assign({}, res.authRoleAssign.split(','));
     let cekmmanajemen = Object.values(mmanajemen).find((obj) => {
       return obj === 'mminjam';
     });

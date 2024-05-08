@@ -11,6 +11,7 @@ import ContextMenu from '@paljs/ui/ContextMenu';
 import User from '@paljs/ui/User';
 import { breakpointDown } from '@paljs/ui/breakpoints';
 import { storeLogin } from 'components/redux/storeLogin';
+import { RedisConfig } from '../redis/redis';
 const HeaderStyle = styled.div`
   display: flex;
   width: 100%;
@@ -64,13 +65,18 @@ const Header: React.FC<HeaderProps> = (props) => {
   const [rolename, setrolename] = React.useState('');
 
   React.useEffect(() => {
-    if (storeLogin.getState().authUserName) {
-      setusername(capitalizeFirstLetter(storeLogin.getState().authUserName));
+    async function header() {
+      const redis = RedisConfig();
+      const res: any = await redis.get(storeLogin.getState().authLogin);
+      if (res.authRoleName) {
+        setusername(capitalizeFirstLetter(res.authRoleName));
+      }
+      if (res.authUserName) {
+        setrolename(capitalizeFirstLetter(res.authUserName));
+      }
     }
-    if (storeLogin.getState().authRoleName) {
-      setrolename(capitalizeFirstLetter(storeLogin.getState().authRoleName));
-    }
-  }, [username, capitalizeFirstLetter, rolename]);
+    header();
+  });
 
   const router = useRouter();
 

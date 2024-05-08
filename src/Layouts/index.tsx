@@ -49,7 +49,7 @@ const LayoutPage: React.FC<SEOProps> = ({ children, ...rest }) => {
       setTheme(localTheme);
     }
 
-    if (storeLogin.getState().authUserName === '') {
+    if (storeLogin.getState().authLogin === '') {
       router.push('/auth/signin');
     }
   }, []);

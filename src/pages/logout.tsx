@@ -1,8 +1,13 @@
 import { useEffect } from 'react';
 import { storeLogin } from 'components/redux/storeLogin';
 import { useRouter } from 'next/router';
+
+import { RedisConfig } from 'redis/redis';
 export default function Logout() {
   const router = useRouter();
+
+  const redis = RedisConfig();
+  redis.del(storeLogin.getState().authLogin);
 
   useEffect(() => {
     const Dologout = async () => {
