@@ -4,24 +4,17 @@ import Col from '@paljs/ui/Col';
 import React from 'react';
 import Layout from 'Layouts';
 import { storeLogin } from 'components/redux/storeLogin';
-import { RedisConfig } from '../redis/redis';
 
 export default function Home() {
-  const [authUserName, setauthUserName] = React.useState(false);
+  let username = '';
 
-  React.useEffect(() => {
-    async function getData() {
-      const redis = RedisConfig();
-      const res: any = await redis.get(storeLogin.getState().authLogin);
-      if (res.authUserName) {
-        setauthUserName(capitalizeFirstLetter(res.authUserName));
-      }
-    }
-    getData();
-  });
+  if (storeLogin.getState().authRoleAssign) {
+    username = capitalizeFirstLetter(storeLogin.getState().authName);
+  }
 
   function capitalizeFirstLetter(string: any) {
     if (string) return string.charAt(0).toUpperCase() + string.slice(1);
+    else return string;
   }
 
   return (
@@ -30,7 +23,7 @@ export default function Home() {
         <Col breakPoint={{ xs: 24, md: 12 }}>
           <Card status="Primary" accent="Info">
             <CardHeader>Dashboard</CardHeader>
-            <CardBody>Hai, {authUserName} !!</CardBody>
+            <CardBody>Hello, {username} !!</CardBody>
             <CardFooter></CardFooter>
           </Card>
         </Col>

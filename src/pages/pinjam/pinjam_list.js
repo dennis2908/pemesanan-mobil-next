@@ -5,8 +5,6 @@ import React from 'react';
 
 import Alert from '@paljs/ui/Alert';
 
-import { RedisConfig } from '../../redis/redis';
-
 import NativeSelect from '@material-ui/core/NativeSelect';
 
 import useStateRef from 'react-usestateref';
@@ -114,13 +112,11 @@ export default function Pinjam_list() {
   const router = useRouter();
 
   React.useEffect(async () => {
-    const redis = new RedisConfig();
-    const res = await redis.get(storeLogin.getState().authLogin);
-    var mmanajemen = Object.assign({}, res.authRoleAssign.split(','));
-    let cekmmanajemen = Object.values(mmanajemen).find((obj) => {
+    var roleAss = Object.assign({}, storeLogin.getState().authRoleAssign);
+    let cekmminjam = Object.values(roleAss).find((obj) => {
       return obj === 'mminjam';
     });
-    if (!cekmmanajemen) router.push('/dashboard');
+    if (!cekmminjam) router.push('/dashboard');
 
     await loadData();
     await cariMobil();

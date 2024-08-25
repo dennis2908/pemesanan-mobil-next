@@ -3,8 +3,6 @@ import Row from '@paljs/ui/Row';
 import Col from '@paljs/ui/Col';
 import React from 'react';
 
-import { RedisConfig } from '../../redis/redis';
-
 import useStateRef from 'react-usestateref';
 import Layout from 'Layouts';
 import { storeLogin } from 'components/redux/storeLogin';
@@ -106,9 +104,7 @@ export default function Role_list() {
   };
 
   React.useEffect(async () => {
-    const redis = RedisConfig();
-    const res = await redis.get(storeLogin.getState().authLogin);
-    var roleAss = Object.assign({}, res.authRoleAssign.split(','));
+    var roleAss = Object.assign({}, storeLogin.getState().authRoleAssign);
     let cekmrole = Object.values(roleAss).find((obj) => {
       return obj === 'mrole';
     });

@@ -4,8 +4,6 @@ import React, { useEffect } from 'react';
 
 import Alert from '@paljs/ui/Alert';
 
-import { RedisConfig } from '../../redis/redis';
-
 //import { useHistory } from 'react-router-dom'
 
 import { storeLogin } from 'components/redux/storeLogin';
@@ -112,23 +110,12 @@ export default function Signin() {
             type: 'CHANGE_STATE',
             payload: {
               authLogin: result.token,
+              authUserName: result.result.firstname,
+              authName: result.result.firstname + ' ' + result.result.lastname,
+              authRoleName: result.result.role_name,
               authRoleAssign: result.result.role_assign,
             },
           });
-          const Redis = RedisConfig();
-
-          await Redis.set(
-            result.token,
-            JSON.stringify({
-              authUserName: result.result.nama,
-              authRoleAssign: result.result.role_assign,
-              authRoleName: result.result.role_name,
-            }),
-          );
-          let res = await Redis.get(storeLogin.getState().authLogin);
-          let roleAss = Object.assign({}, res.authRoleAssign.split(','));
-          console.log(roleAss);
-          // var roleAss = Object.assign({}, storeLogin.getState().authRoleAssign);
           location.href = '/dashboard';
         }
       });
