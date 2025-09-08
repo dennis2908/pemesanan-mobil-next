@@ -32,7 +32,8 @@
     "redis": "^4.2.0",
     "redux": "^4.1.0",
     "styled-components": "5.2.3",
-    "tls": "^0.0.1"
+    "tls": "^0.0.1",
+    "yarn": "^1.22.22"
   },
   "scripts": {
     "dev": "set NODE_OPTIONS=--openssl-legacy-provider && next",

@@ -9,18 +9,8 @@
 - buka localhost:3000<br>
 
 
-![image](https://github.com/dennis2908/pemesanan-mobil-next/assets/42124503/1a37812f-686d-454a-895a-a327ab2e636f)
+<img width="1063" height="782" alt="image" src="https://github.com/user-attachments/assets/1a28424a-954d-4659-bd8b-d590e3949719" />
 
-![image](https://github.com/dennis2908/pemesanan-mobil-next/assets/42124503/bf5d79a0-3f63-4005-a38e-c10f0a0cb032)
-
-![image](https://github.com/dennis2908/pemesanan-mobil-next/assets/42124503/7630a742-5b79-4a69-a154-667aca8aeaac)
-
-![image](https://github.com/dennis2908/pemesanan-mobil-next/assets/42124503/0e470311-49c7-47b7-9991-4594243d79ca)
-
-![image](https://github.com/dennis2908/pemesanan-mobil-next/assets/42124503/99829c81-19b0-431f-bb87-1e1214f30c44)
-
-![image](https://github.com/dennis2908/pemesanan-mobil-next/assets/42124503/2aaa20a4-8c8f-4071-92f7-387d923a128c)
-
-
+<img width="1887" height="700" alt="image" src="https://github.com/user-attachments/assets/4e99dab8-3199-4a7d-9d29-173cbfa80a77" />
   
 # Back End : https://github.com/dennis2908/pemesanan-mobil-laravel </br>	
